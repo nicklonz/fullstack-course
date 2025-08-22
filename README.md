@@ -1,12 +1,3 @@
-1. Create the README.md file
-
-From the root of your repo (fullstack-course/), run:
-
-nano README.md
-
-
-This will open an editor. Copy and paste the full content below into it:
-
 # 📚 Fullstack Course — TypeScript, Next.js, Express
 
 This repository follows along a **hands-on fullstack journey**:  
@@ -16,6 +7,7 @@ Built step by step with clean commits and clear structure.
 ---
 
 ## 🚀 Tech Stack
+
 - **Frontend:** [Next.js 15](https://nextjs.org/) (App Router, TS)
 - **Backend:** [Express](https://expressjs.com/) + TypeScript
 - **Package Manager:** npm (workspaces)
@@ -24,7 +16,6 @@ Built step by step with clean commits and clear structure.
 ---
 
 ## 📂 Project Structure
-
 
 fullstack-course/
 │
@@ -36,12 +27,12 @@ fullstack-course/
 ├── README.md # this file 🙂
 └── .gitignore
 
-
 ---
 
 ## ⚡ Quick Start
 
 ### 1. Clone & Install
+
 ```bash
 git clone https://github.com/nicklonz/fullstack-course.git
 cd fullstack-course
@@ -72,12 +63,12 @@ PORT=4000
 
 From repo root:
 
-Command	What it does
-npm run dev:api	Run Express API on http://localhost:4000
+Command What it does
+npm run dev:api Run Express API on http://localhost:4000
 
-npm run dev:web	Run Next.js frontend on http://localhost:3000
+npm run dev:web Run Next.js frontend on http://localhost:3000
 
-npm run dev	(optional) Run both concurrently (later setup)
+npm run dev (optional) Run both concurrently (later setup)
 🏗 Lessons Covered So Far
 
 Monorepo setup with npm workspaces
