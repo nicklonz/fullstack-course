@@ -1,4 +1,5 @@
 import { getJSON } from "@/lib/api";
+import PostActions from "./PostActions"; // client component (has "use client")
 
 type Post = { id: string; title: string; content: string; createdAt: string };
 
@@ -11,10 +12,14 @@ export default async function PostList() {
       {posts.map((p) => (
         <li key={p.id} style={{ marginBottom: 12 }}>
           <strong>{p.title}</strong>
+          {/* Client-only buttons are fine to render from a Server Component */}
+          <PostActions id={p.id} title={p.title} content={p.content} />
           <br />
           <span style={{ opacity: 0.85 }}>{p.content}</span>
           <br />
-          <small style={{ opacity: 0.6 }}>{new Date(p.createdAt).toLocaleString()}</small>
+          <small style={{ opacity: 0.6 }}>
+            {new Date(p.createdAt).toLocaleString()}
+          </small>
         </li>
       ))}
     </ul>
