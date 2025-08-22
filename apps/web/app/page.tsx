@@ -1,29 +1,23 @@
-import { getJSON } from "@/lib/api";
+import PostList from "./components/PostList";
+import PostForm from "./components/PostForm";
 
-type HelloResponse = { message: string };
-
-export default async function Home() {
-  let apiMessage = "(loading...)";
-  try {
-    const data = await getJSON<HelloResponse>("/api/hello");
-    apiMessage = data.message;
-  } catch (e: any) {
-    apiMessage = \`Error: \${e.message || "Failed to reach API"}\`;
-  }
-
+export default function Home() {
   return (
-    <main style={{ fontFamily: "system-ui", maxWidth: 800, margin: "40px auto" }}>
-      <h1 style={{ marginBottom: 16 }}>Frontend ↔ API</h1>
+    <main style={{ fontFamily: "system-ui", maxWidth: 900, margin: "40px auto" }}>
+      <h1 style={{ marginBottom: 16 }}>Posts (MongoDB)</h1>
       <p style={{ opacity: 0.8, marginBottom: 24 }}>
-        This page is rendered on the server and fetches from the API during the request.
+        Create a post, then see it appear below (persisted in MongoDB).
       </p>
 
+      <section style={{ border: "1px solid #333", borderRadius: 12, padding: 16, marginBottom: 16 }}>
+        <h3>Add Post</h3>
+        <PostForm />
+      </section>
+
       <section style={{ border: "1px solid #333", borderRadius: 12, padding: 16 }}>
-        <h3>API says:</h3>
-        <pre style={{ whiteSpace: "pre-wrap" }}>{apiMessage}</pre>
-        <div style={{ opacity: 0.7, marginTop: 8 }}>
-          (From <code>{process.env.NEXT_PUBLIC_API_URL}/api/hello</code>)
-        </div>
+        <h3>Latest Posts</h3>
+        {/* @ts-expect-error Async Server Component */}
+        <PostList />
       </section>
     </main>
   );

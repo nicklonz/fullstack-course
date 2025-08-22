@@ -1,0 +1,45 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      - PORT=4000
+      - MONGODB_URI=mongodb://mongo:27017/fullstack_course
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./apps/api:/usr/src/app
+      - /usr/src/app/node_modules
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: web
+    environment:
+      # Browser reaches API via mapped host port
+      - NEXT_PUBLIC_API_URL=http://localhost:4000
+      # Server-side (inside the web container) uses service name on Docker network
+      - INTERNAL_API_URL=http://api:4000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - ./apps/web:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  mongo_data:

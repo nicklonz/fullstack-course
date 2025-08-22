@@ -1,101 +1,28 @@
-# 📚 Fullstack Course — TypeScript, Next.js, Express
+# Fullstack Course — All-in-One Docker (Mongo + API + Web)
 
-This repository follows along a **hands-on fullstack journey**:  
-Next.js (frontend) + Express (backend API) + TypeScript everywhere.  
-Built step by step with clean commits and clear structure.
-
----
-
-## 🚀 Tech Stack
-
-- **Frontend:** [Next.js 15](https://nextjs.org/) (App Router, TS)
-- **Backend:** [Express](https://expressjs.com/) + TypeScript
-- **Package Manager:** npm (workspaces)
-- **Environment:** Node.js ≥ 20
-
----
-
-## 📂 Project Structure
-
-fullstack-course/
-│
-├── apps/
-│ ├── web/ # Next.js frontend
-│ └── api/ # Express backend
-│
-├── package.json # workspace config + dev scripts
-├── README.md # this file 🙂
-└── .gitignore
-
----
-
-## ⚡ Quick Start
-
-### 1. Clone & Install
+This bundle lets you run **MongoDB**, **Express API**, and **Next.js Web** with **one command**:
 
 ```bash
-git clone https://github.com/nicklonz/fullstack-course.git
-cd fullstack-course
-npm install
+docker compose up --build
+```
 
-2. Run the API
-npm run dev:api
-# → starts Express server at http://localhost:4000
-# try http://localhost:4000/api/hello
+- Web: http://localhost:3000
+- API: http://localhost:4000
+- Mongo: mongodb://localhost:27017 (container name: mongo)
 
-3. Run the Web
-npm run dev:web
-# → starts Next.js app at http://localhost:3000
-# loads API response into homepage
+## Quick Start
+```bash
+unzip fullstack-course-m6-docker.zip
+cd fullstack-course-m6-docker
+docker compose up --build
+# open http://localhost:3000
+```
 
-🔑 Environment Variables
+### Dev tips
+- Containers hot-reload on code changes (volumes are mounted).
+- Web talks to API via `http://api:4000` inside the Docker network; the browser uses `http://localhost:4000` via port mapping.
 
-Frontend (apps/web/.env.local):
-
-NEXT_PUBLIC_API_URL=http://localhost:4000
-
-
-Backend (apps/api/.env — optional for DB config later):
-
-PORT=4000
-
-🧑‍💻 Available Scripts
-
-From repo root:
-
-Command What it does
-npm run dev:api Run Express API on http://localhost:4000
-
-npm run dev:web Run Next.js frontend on http://localhost:3000
-
-npm run dev (optional) Run both concurrently (later setup)
-🏗 Lessons Covered So Far
-
-Monorepo setup with npm workspaces
-
-Next.js app (apps/web)
-
-Express API (apps/api)
-
-Fetching API data into frontend
-
-Environment variable config
-
-📌 Next Steps
-
-Add CRUD posts API + frontend form
-
-Introduce GraphQL (Yoga or Apollo)
-
-Add MongoDB for persistence
-
-Dockerize for local + production use
-
-🤝 Contributing
-
-This is a learning repo — feel free to fork, tweak, and PR improvements.
-Each lesson is meant to be small, clear, and incremental.
-
-📜 License
-
-MIT — free to use & remix.
+## Services
+- **mongo** — MongoDB 6 (port 27017)
+- **api** — Express + TypeScript + Mongoose (port 4000)
+- **web** — Next.js 15 (port 3000)
