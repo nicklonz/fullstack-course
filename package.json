@@ -1,12 +1,17 @@
 {
   "name": "fullstack-course",
+  "private": true,
   "version": "1.0.0",
-  "main": "index.js",
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+    "dev:web": "npm run dev --workspace web",
+    "build:web": "npm run build --workspace web",
+    "lint:web": "npm run lint --workspace web",
+
+    "dev:api": "npm run dev --workspace api",
+    "build:api": "npm run build --workspace api",
+    "start:api": "npm run start --workspace api"
+  }
 }
